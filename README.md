@@ -9,7 +9,7 @@ Script folder:
 This script fetches train data from the SBB API, but due to the API's daily data limit and historical data availability, it only fetches one day's worth of data at a time. The API has not been updated for a month, so the **historical data was fetched via `historic_train_data.py`**. The fetched data is saved in the `data` folder as a JSON file.
 
 ### **What it does**:
-* **Fetches** real-time train data from the SBB API (limited to one day's worth of data per request).
+* **Fetches** train data from the SBB API (limited to one day's worth of data per request).
 * **Saves** the fetched data as a JSON file in the `data` folder.
 * **Historical data** is fetched via the `historic_train_data.py` script due to API limitations and lack of recent updates.
 
