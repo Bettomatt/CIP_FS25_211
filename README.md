@@ -35,9 +35,21 @@ This script fetches historical train data in CSV format from the OpenTransportDa
 This script processes large CSV files of historic train data, filters them by the 30 most popular stops, and saves the filtered data as JSON files in the `data/filtered-data` folder. **CSV files are too large to be stored on GitHub, so only the filtered data is stored.**
 
 ### **What it does**:
-* **Filters** CSV files from `data/historic-data` for the top 30 most popular stops.
-* **Saves** the filtered data as JSON files to `data/filtered-data`.
-* **Skips** files that are already processed.
+* Filters CSV files from `data/historic-data` for the top 30 most popular stops.
+* *aves the filtered data as JSON files to `data/filtered-data`.
+* Skips files that are already processed.
 
 ### **How to run**:
 Run the script, and it will process and filter the CSV files from `data/historic-data` and store the filtered JSON data in the `data/filtered-data` folder.
+
+### fetch_weather.py
+Fetches **hourly historical weather data** for 30 Swiss cities from the **Open-Meteo API**.
+
+### **What it does**:
+* Loops through the **last 60 days**.
+* For each day and station, collects **temperature**, **precipitation**, **snowfall**, **wind speed**, **cloud cover**, and **weather code**.
+* Saves one JSON file **per day** in `data/weather_data/`.
+* Skips already existing files to avoid duplicates.
+
+### **How to run**:
+Run the script with `python scripts/fetch_weather.py` from the project root to fetch and save historical weather data into `data/weather_data/`.
