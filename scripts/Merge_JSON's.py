@@ -38,9 +38,10 @@ measurements = load_json("output_Livedata.json")  # Datei mit Messwerten
 
 # Zusammenführen
 data_merged = merge_json(metadata, measurements)
+#print(data_merged)
+
 
 # Speichern der kombinierten Datei
 with open("merged_data.json", "w", encoding="utf-8") as file:
     json.dump(data_merged, file, indent=4, ensure_ascii=False)
-
 print("JSON-Dateien erfolgreich zusammengeführt!")
