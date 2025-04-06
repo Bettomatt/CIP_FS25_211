@@ -25,9 +25,7 @@ This script fetches historical train data in CSV format from the OpenTransportDa
 #### What it does:
 
 * Scrapes CSV file links from https://data.opentransportdata.swiss/dataset/istdaten.
-* 
 * Downloads the CSV files to the data/historic-data folder.
-* 
 * Skips files that already exist.
 
 ### **Filter historic train data.py**
@@ -36,7 +34,7 @@ This script processes large CSV files of historic train data, filters them by th
 
 ### **What it does**:
 * Filters CSV files from `data/historic-data` for the top 30 most popular stops.
-* *aves the filtered data as JSON files to `data/filtered-data`.
+* Saves the filtered data as JSON files to `data/filtered-data`.
 * Skips files that are already processed.
 
 ### **How to run**:
