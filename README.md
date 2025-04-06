@@ -28,7 +28,7 @@ This script fetches historical train data in CSV format from the OpenTransportDa
 * Downloads the CSV files to the data/historic-data folder.
 * Skips files that already exist.
 
-## **Filter historic train data.py**
+## **historic data filter json convert.py**
 
 This script processes large CSV files of historic train data, filters them by the 30 most popular stops, and saves the filtered data as JSON files in the `data/filtered-data` folder. **CSV files are too large to be stored on GitHub, so only the filtered data is stored.**
 
