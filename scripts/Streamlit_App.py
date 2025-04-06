@@ -55,8 +55,7 @@ st.title("Live Traffic Data Visualization")
 # Layout with columns
 col1, col2 = st.columns([1, 3])
 
-# Button to trigger the API call and data load
-
+#show-data function: executes files and visualises the data on the map
 def show_data():
     execute_files(files_to_execute)  # Execute the API files
 
@@ -101,6 +100,8 @@ def show_data():
     # Display the map in the second column
     with col2:
         st_folium(m, width=1000, height=600)
+
+# Text and refresh-button on the webpage
 with col1:
     st.header("About this App")
     st.write(
@@ -111,4 +112,6 @@ with col1:
         show_data()
         # pass
     st.write("Click the button to refresh data.")
+
+#initial call of function show data
 show_data()
