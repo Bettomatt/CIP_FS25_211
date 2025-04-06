@@ -52,6 +52,7 @@ Fetches **hourly historical weather data** for 30 Swiss cities from the **Open-M
 ### **How to run**:
 Run the script with `python scripts/fetch_weather.py` from the project root to fetch and save historical weather data into `data/weather_data/`.
 
+
 ## **merge_train_weather.py**
 
 This script **merges filtered train delay data** with **weather data** for each day, based on station and hour, and saves the merged clean dataset in the `data/clean-dataset/` folder.
