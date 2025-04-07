@@ -13,7 +13,7 @@ locations = [
 ]
 
 # URL of the weather API
-api_url = "https://api.open-meteo.com/v1/forecast"
+api_url = "https://archive-api.open-meteo.com/v1/archive"
 
 # Get the absolute path for the project and create the folder to save weather data
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
