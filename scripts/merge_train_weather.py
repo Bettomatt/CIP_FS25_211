@@ -22,6 +22,12 @@ for train_file in os.listdir(train_folder):
     date_part = train_file.split('_')[0]  # Example: 2025-02-15
     print(f"Processing date: {date_part}")
 
+    # Check if already merged
+    output_file = os.path.join(output_folder, f"clean_{date_part}.json")
+    if os.path.exists(output_file):
+        print(f"Clean file for {date_part} already exists, skipping...")
+        continue
+
     # Build file paths
     train_path = os.path.join(train_folder, train_file)
     weather_path = os.path.join(weather_folder, f"weather_data_{date_part}.json")
@@ -60,28 +66,21 @@ for train_file in os.listdir(train_folder):
     # Go through all train records
     for record in train_data:
         try:
-            # Skip records if arrival time or prognosis is missing
             if not record.get("ANKUNFTSZEIT") or not record.get("AN_PROGNOSE"):
                 continue
 
-            # Parse arrival times
             planned_arrival = datetime.strptime(record["ANKUNFTSZEIT"], "%d.%m.%Y %H:%M")
             real_arrival = datetime.strptime(record["AN_PROGNOSE"], "%d.%m.%Y %H:%M:%S")
 
-            # Calculate delay in minutes
             delay_min = (real_arrival - planned_arrival).total_seconds() / 60
 
-            # Find station and hour
             station = record["HALTESTELLEN_NAME"]
             hour = planned_arrival.hour
 
-            # Get weather for that station and hour
             weather = weather_lookup.get((station, hour), None)
-
             if weather is None:
-                continue  # If no weather found, skip
+                continue
 
-            # Build clean merged record
             clean_record = {
                 "date": date_part,
                 "station": station,
@@ -104,10 +103,9 @@ for train_file in os.listdir(train_folder):
 
     # Save clean data as JSON (one record per line)
     if clean_records:
-        output_file = os.path.join(output_folder, f"clean_{date_part}.json")
         with open(output_file, "w", encoding="utf-8") as f:
             for record in clean_records:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
-        print(f"Saved cleaned data to {output_file}")
+        print(f"✅ Saved cleaned data to {output_file}")
     else:
         print(f"No valid records for {date_part}")
