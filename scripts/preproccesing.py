@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import glob
 import os
 
@@ -7,7 +6,9 @@ import os
 # Pre-processing
 ########################################################################################################
 # Define the path and get all json files
-path = "data/clean-dataset/"
+# Use the following code if "path = "../data/clean-dataset/"" is not working.
+# path = "data/clean-dataset/"
+path = "../data/clean-dataset/"
 all_files = glob.glob(os.path.join(path, "clean_*.json"))
 
 # Read all files and concatenate into one DataFrame
