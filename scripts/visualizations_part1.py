@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+
+# First, execute the data processing step in the script "preprocessing".
+# Use dataframe < data_no_nan >
 
 #%%%####################################################################################################
 # First visualizations to explore the data

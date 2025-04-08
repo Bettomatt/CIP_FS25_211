@@ -1,9 +1,6 @@
-import pandas as pd
 import matplotlib.pyplot as plt
-import glob
-import os
 
-# First, execute the data processing step in the script visualizations_part1.
+# First, execute the data processing step in the script "preprocessing".
 # Use dataframe < data_no_nan >
 
 # Research Questions:
