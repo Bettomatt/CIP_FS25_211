@@ -218,9 +218,8 @@ plt.xlabel("Precipitation (mm)")
 plt.ylabel("Arrival Delay (min)")
 plt.tight_layout()
 plt.show()
-#######################################################################################################
-# Boxplot: Precipitation
-# Create the boxplot:
+
+# %%% Boxplot: Arrival Delay vs Precipitation
 plt.figure(figsize=(10, 6))
 data_no_nan.boxplot(
     column='arrival_delay_min',
@@ -259,11 +258,9 @@ plt.xlabel("Snowfall (cm)")
 plt.ylabel("Arrival Delay (min)")
 plt.tight_layout()
 plt.show()
-#######################################################################################################
-# Boxplot: Snowfall
-# Create the boxplot:
-plt.figure(figsize=(10, 6))
 
+# %%% Boxplot: Arrival Delay vs Snowfall (cm)
+plt.figure(figsize=(10, 6))
 data_no_nan.boxplot(
     column='arrival_delay_min',
     by='snowfall_category',
@@ -337,8 +334,6 @@ plt.tight_layout()
 plt.show()
 
 # %%% Box plot of Arrival Delays by Station
-
-# Your plotting code here:
 plt.figure(figsize=(10,6)) # Change of size is not working in .py
 # Creates a box plot for arrival delays grouped by weekday
 data_no_nan.boxplot(column='arrival_delay_min', by='station', grid=False)
