@@ -36,7 +36,6 @@ plt.tight_layout()
 plt.show()
 
 # %%% 1. Heat Map
-
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 
 # Temperature vs. Arrival Delay heat map
