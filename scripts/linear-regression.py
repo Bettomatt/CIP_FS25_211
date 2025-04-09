@@ -55,6 +55,13 @@ plt.show()
 """
 •	Rain has a statistically significant but practically negligible effect on train delays.
 •	Other factors (e.g., train congestion, infrastructure, accidents) likely have a much stronger influence.
+
+precipitation and delay regression results:
+Regression Coefficient (Slope): 0.0379
+Intercept: 1.4389
+R² Score: 0.0000
+P-Value: 0.0766 (Significance)
+Standard Error: 0.0214
 """
 
 
@@ -85,6 +92,14 @@ plt.title("Relationship between train delay and snowfall")
 plt.legend()
 plt.show()
 
+"""
+precipitation and delay regression results:
+Regression Coefficient (Slope): 0.0379
+Intercept: 1.4389
+R² Score: 0.0000
+P-Value: 0.0766 (Significance)
+Standard Error: 0.0214
+"""
 
 ########################################################
 #%%%% Relationship between train delay and temperature
@@ -140,3 +155,12 @@ plt.ylabel("Train Delay (min)")
 plt.title("Relationship between train delay and wind speed")
 plt.legend()
 plt.show()
+
+"""
+temperature regression results:
+Regression Coefficient (Slope): 0.0103
+Intercept: 1.3729
+R² Score: 0.0002
+P-Value: 0.0000 (Significance)
+Standard Error: 0.0012
+"""
