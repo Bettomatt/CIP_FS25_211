@@ -2,6 +2,7 @@ import pandas as pd
 import glob
 import os
 
+#%%%
 ########################################################################################################
 # Pre-processing
 ########################################################################################################
@@ -73,8 +74,7 @@ cloudcover           10283
 weathercode          10283
 """
 data_no_nan = data_clean_iqr.dropna(subset=['arrival_delay_min', 'temperature_2m', 'precipitation', 'snowfall', 'wind_speed_10m', 'cloudcover', 'weathercode'])
-
-# Create new variables (categorical bins) for plotting
+# %%% Create new variables (categorical bins) for plotting
 
 # Precipitation bins in mm (adjust as needed).
 # Bin labels must be one fewer than the number of bin edges
@@ -189,3 +189,63 @@ def simplified_weather(code):
         return "Unknown"
 
 data_no_nan['simp_weather_description'] = data_no_nan['weathercode'].apply(simplified_weather)
+
+# %%% for data_no_nan2
+
+# Does not limit the upper boundaries
+def remove_outliers2(df, col, multiplier=1.5):
+    # Remove outliers from a DataFrame column based on the IQR method.
+    q1 = df[col].quantile(0.25)
+    q3 = df[col].quantile(0.75)
+    iqr = q3 - q1
+    lower_bound = q1 - multiplier * iqr
+    upper_bound = df[col].max()  # Use df[col].max() to work with the provided DataFrame
+    return df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+
+# Use the function to remove outliers in arrival_delay_min
+data_clean_iqr2 = remove_outliers2(data, 'arrival_delay_min')
+
+data_no_nan2 = data_clean_iqr2.dropna(subset=['arrival_delay_min', 'temperature_2m', 'precipitation', 'snowfall', 'wind_speed_10m', 'cloudcover', 'weathercode'])
+
+# %%%
+# Precipitation bins in mm (adjust as needed).
+# Bin labels must be one fewer than the number of bin edges
+
+# Create categorical bins
+data_no_nan2 = data_no_nan2.copy()
+data_no_nan2.loc[:, 'precipitation_category'] = pd.cut(
+    data_no_nan2['precipitation'],
+    bins=bins,
+    labels=labels,
+    include_lowest=True
+)
+# Snowfall bins in cm (adjust as needed).
+
+# Create categorical bins
+data_no_nan2 = data_no_nan2.copy()
+data_no_nan2.loc[:, 'snowfall_category'] = pd.cut(
+    data_no_nan2['snowfall'],
+    bins=bins,
+    labels=labels,
+    include_lowest=True
+)
+########################################################################################################
+# Extracts the day of the week as a new column
+data_no_nan2['weekday'] = data_no_nan2['date'].dt.day_name()
+
+# Create new columns for month name and month number (to preserve order)
+data_no_nan2['month'] = data_no_nan2['date'].dt.strftime('%B')
+data_no_nan2['month_num'] = data_no_nan2['date'].dt.month
+########################################################################################################
+# Add original Weather Code description
+
+# Map the weather codes to their descriptions
+data_no_nan2['orig_weather_description'] = data_no_nan2['weathercode'].map(weather_mapping)
+
+# Optionally, if there might be codes not covered by the mapping, assign 'Unknown'
+data_no_nan2['orig_weather_description'] = data_no_nan2['orig_weather_description'].fillna('Unknown')
+
+########################################################################################################
+# Add simplified Weather Code description
+
+data_no_nan2['simp_weather_description'] = data_no_nan2['weathercode'].apply(simplified_weather)

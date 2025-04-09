@@ -51,6 +51,21 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+plt.figure(figsize=(10, 6))
+data_no_nan2.boxplot(
+    column='arrival_delay_min',
+    by='precipitation_category',
+    grid=False
+)
+
+plt.title("Arrival Delay by Snowfall Category")
+plt.suptitle("")  # Remove the default subtitle
+plt.xlabel("Snowfall Range")
+plt.ylabel("Arrival Delay (min)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
 # %%% Heat Map: Arrival Delay vs Wind Speed (km/h)
 print(data_no_nan['wind_speed_10m'].describe())
 
