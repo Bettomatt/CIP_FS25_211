@@ -1,34 +1,13 @@
 import pandas as pd
 import numpy as np
 import scipy.linalg
-from preprocessing import get_data_no_nan
+from preprocessing import get_data_no_nan2
 
 # Load and clean data
-alldata = get_data_no_nan()
-print(alldata["station"])
+alldata = get_data_no_nan2()
 
-# Clean the values in the 'station' column
-alldata["station"] = alldata["station"].str.strip()
-# Check the datatype of 'station'
-print(alldata["station"].dtype)
-
-# Feature selection
-X = alldata[["precipitation", "snowfall", "temperature_2m", "station"]].copy()  # Include 'station' column
-
-# Convert time (extract hour from datetime)
-X["hour"] = pd.to_datetime(alldata["date"]).dt.hour
-
-# Convert 'station' column to categorical
-X["station"] = pd.Categorical(X["station"])
-
-# One-hot encode the categorical column
-encoded_station = pd.get_dummies(X["station"], drop_first=True)
-
-# Drop the original 'station' column and join the encoded columns
-X = X.drop(columns=["station"]).join(encoded_station)
-
-# Convert boolean columns to integers
-X = X.apply(lambda col: col.astype(int) if col.dtype == 'bool' else col)
+# Feature selection (weather-related features)
+X = alldata[["precipitation", "snowfall", "temperature_2m", "wind_speed_10m"]].copy()
 
 # Convert all columns in X to numeric (to avoid object types)
 X = X.apply(pd.to_numeric, errors='coerce')
