@@ -1,13 +1,13 @@
 from scipy.stats import linregress
-from preprocessing import get_data_no_nan
 import matplotlib.pyplot as plt
+import scripts.preprocessing as p
 
 # get data
-alldata = get_data_no_nan()
+alldata = p.get_data_no_nan2()
+print(type(alldata))
+#print(max(alldata["arrival_delay_min"]))
 
-print(max(alldata["arrival_delay_min"]))
-
-# Filter out negative delay values before extracting y
+# Filter out negative delay values
 alldata = alldata[alldata["arrival_delay_min"] >= 0]
 
 """
@@ -45,7 +45,7 @@ plt.scatter(precipitation, y, label="Datapoint per Train", alpha=0.5)
 plt.plot(precipitation, slope * precipitation + intercept, color="red", label=f"Regression Line (y = {slope:.2f}x + {intercept:.2f})")
 plt.xlabel("Precipitation (mm)")
 plt.ylabel("Train Delay (min)")
-plt.title("Linear Regression using SciPy")
+plt.title("Relationship between train delay and precipitation")
 plt.legend()
 plt.xlim(min(precipitation) - 0, max(precipitation) + 1)  # Extend x-axis by 1 unit on each side
 plt.ylim(min(y) - 0, max(y) + 5)  # Extend y-axis by 10 units on each side

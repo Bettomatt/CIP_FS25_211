@@ -168,6 +168,10 @@ data_no_nan['orig_weather_description'] = data_no_nan['weathercode'].map(weather
 # Optionally, if there might be codes not covered by the mapping, assign 'Unknown'
 data_no_nan['orig_weather_description'] = data_no_nan['orig_weather_description'].fillna('Unknown')
 
+#function to get dataframe from other files in scripts
+def get_data_no_nan ():
+    return data_no_nan
+
 ########################################################################################################
 # Add simplified Weather Code description
 def simplified_weather(code):
@@ -245,7 +249,10 @@ data_no_nan2['orig_weather_description'] = data_no_nan2['weathercode'].map(weath
 # Optionally, if there might be codes not covered by the mapping, assign 'Unknown'
 data_no_nan2['orig_weather_description'] = data_no_nan2['orig_weather_description'].fillna('Unknown')
 
+def get_data_no_nan2 ():
+    return data_no_nan2
 ########################################################################################################
 # Add simplified Weather Code description
 
 data_no_nan2['simp_weather_description'] = data_no_nan2['weathercode'].apply(simplified_weather)
+
