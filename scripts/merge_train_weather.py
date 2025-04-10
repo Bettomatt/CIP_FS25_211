@@ -106,6 +106,6 @@ for train_file in os.listdir(train_folder):
         with open(output_file, "w", encoding="utf-8") as f:
             for record in clean_records:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
-        print(f"✅ Saved cleaned data to {output_file}")
+        print(f"Saved cleaned data to {output_file}")
     else:
         print(f"No valid records for {date_part}")
