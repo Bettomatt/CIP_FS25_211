@@ -260,6 +260,10 @@ data_no_nan2['simp_weather_description'] = data_no_nan2['weathercode'].apply(sim
 # Define the target directory
 path1 = "data/final_data"
 
+# Create the directory if it doesn't exist
+if not os.path.exists(path1):
+    os.makedirs(path1)
+
 # Save the dataframes to CSV files in the target folder
 data_no_nan2.to_csv(os.path.join(path1, "data_no_nan2.csv"), index=False)
 data_no_nan.to_csv(os.path.join(path1, "data_no_nan.csv"), index=False)
