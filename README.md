@@ -18,7 +18,7 @@ This script fetches train data from the SBB API, but due to the API's daily data
 Run the script to fetch real-time data from the SBB API and save it in the `data` folder. Since the API only allows fetching one day of data at a time, historical data is fetched separately through `historic_train_data.py`.
 
 
-## **historic train data.py**
+## **historic_train_data.py**
 
 This script fetches historical train data in CSV format from the OpenTransportData Swiss website and saves it to the data/historic-data folder.
 
@@ -28,7 +28,7 @@ This script fetches historical train data in CSV format from the OpenTransportDa
 * Downloads the CSV files to the data/historic-data folder.
 * Skips files that already exist.
 
-## **historic data filter json convert.py**
+## **historic_data_filter_json_convert.py**
 
 This script processes large CSV files of historic train data, filters them by the 30 most popular stops, and saves the filtered data as JSON files in the `data/filtered-data` folder. **CSV files are too large to be stored on GitHub, so only the filtered data is stored.**
 
@@ -38,7 +38,7 @@ This script processes large CSV files of historic train data, filters them by th
 * Skips files that are already processed.
 
 ### **How to run**:
-Run the script, and it will process and filter the CSV files from `data/historic-data` and store the filtered JSON data in the `data/filtered-data` folder.
+The data needs to be fetched with the "historic_train_data" script first, afterwards run this script to process and filter the CSV files from `data/historic-data` and store the filtered JSON data in the `data/filtered-data` folder.
 
 ### fetch_weather.py
 Fetches **hourly historical weather data** for 30 Swiss cities from the **Open-Meteo API**.
