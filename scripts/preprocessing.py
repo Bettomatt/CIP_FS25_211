@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import glob
 import os
 
@@ -78,28 +79,42 @@ data_no_nan = data_clean_iqr.dropna(subset=['arrival_delay_min', 'temperature_2m
 
 # Precipitation bins in mm (adjust as needed).
 # Bin labels must be one fewer than the number of bin edges
-bins = [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14]
-labels = ['0-0.02 mm', '0.02-0.04 mm', '0.04-0.06 mm', '0.06-0.08 mm', '0.08-0.10 mm', '0.10-0.12 mm', '0.12-0.14+ mm']
-
+bins1 = [0, 0.5, 1, 1.5, 2, 2.5, 3, np.inf]
+labels1 = [
+    "0-0.5 mm",   # covers [0, 0.5)
+    "0.5-1.0 mm",  # covers [0.5, 1.0)
+    "1.0-1.5 mm",  # covers [1.0, 1.5)
+    "1.5-2 mm",    # covers [1.5, 2)
+    "2-2.5 mm",    # covers [2, 2.5)
+    "2.5-3 mm",    # covers [2.5, 3)
+    "3+ cm"        # covers [3, ∞)
+]
 # Create categorical bins
 data_no_nan = data_no_nan.copy()
 data_no_nan.loc[:, 'precipitation_category'] = pd.cut(
     data_no_nan['precipitation'],
-    bins=bins,
-    labels=labels,
+    bins=bins1,
+    labels=labels1,
     include_lowest=True
 )
 # Snowfall bins in cm (adjust as needed).
 # Bin labels must be one fewer than the number of bin edges
-bins = [-0.01, 0, 0.1, 0.5, 1, 2, 5]
-labels = ['0 cm', '0-0.1 cm', '0.1-0.5 cm', '0.5-1 cm', '1-2 cm', '2-5 cm']
-
+bins2 = [0, 0.5, 1, 1.5, 2, 2.5, 3, np.inf]
+labels2 = [
+    "0-0.5 cm",   # covers [0, 0.5)
+    "0.5-1.0 cm",  # covers [0.5, 1.0)
+    "1.0-1.5 cm",  # covers [1.0, 1.5)
+    "1.5-2 cm",    # covers [1.5, 2)
+    "2-2.5 cm",    # covers [2, 2.5)
+    "2.5-3 cm",    # covers [2.5, 3)
+    "3+ cm"        # covers [3, ∞)
+]
 # Create categorical bins
 data_no_nan = data_no_nan.copy()
 data_no_nan.loc[:, 'snowfall_category'] = pd.cut(
     data_no_nan['snowfall'],
-    bins=bins,
-    labels=labels,
+    bins=bins2,
+    labels=labels2,
     include_lowest=True
 )
 ########################################################################################################
@@ -219,8 +234,8 @@ data_no_nan2 = data_clean_iqr2.dropna(subset=['arrival_delay_min', 'temperature_
 data_no_nan2 = data_no_nan2.copy()
 data_no_nan2.loc[:, 'precipitation_category'] = pd.cut(
     data_no_nan2['precipitation'],
-    bins=bins,
-    labels=labels,
+    bins=bins1,
+    labels=labels1,
     include_lowest=True
 )
 # Snowfall bins in cm (adjust as needed).
@@ -229,8 +244,8 @@ data_no_nan2.loc[:, 'precipitation_category'] = pd.cut(
 data_no_nan2 = data_no_nan2.copy()
 data_no_nan2.loc[:, 'snowfall_category'] = pd.cut(
     data_no_nan2['snowfall'],
-    bins=bins,
-    labels=labels,
+    bins=bins2,
+    labels=labels2,
     include_lowest=True
 )
 ########################################################################################################
