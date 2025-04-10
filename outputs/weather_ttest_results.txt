@@ -1,0 +1,9 @@
+Snowfall Impact:
+T-statistic: 4.9809
+P-value: 0.0000
+Conclusion: Snowfall has a significant effect on train delays.
+
+Rainfall Impact:
+T-statistic: 27.7307
+P-value: 0.0000
+Conclusion: Rainfall has a significant effect on train delays.
