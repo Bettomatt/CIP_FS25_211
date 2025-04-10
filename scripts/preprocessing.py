@@ -256,3 +256,10 @@ def get_data_no_nan2 ():
 
 data_no_nan2['simp_weather_description'] = data_no_nan2['weathercode'].apply(simplified_weather)
 
+#%%% Store dataframe
+# Define the target directory
+path1 = "data/final_data"
+
+# Save the dataframes to CSV files in the target folder
+data_no_nan2.to_csv(os.path.join(path1, "data_no_nan2.csv"), index=False)
+data_no_nan.to_csv(os.path.join(path1, "data_no_nan.csv"), index=False)

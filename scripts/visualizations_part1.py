@@ -1,7 +1,19 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+import os
 
 # First, execute the data processing step in the script "preprocessing".
 # Use dataframe < data_no_nan >
+
+# Define the directory where the CSV files are stored
+path = "data/final_data"
+# Construct the full file paths
+data_no_nan2_path = os.path.join(path, "data_no_nan2.csv")
+data_no_nan_path = os.path.join(path, "data_no_nan.csv")
+
+# Load the CSV files into DataFrames
+data_no_nan2 = pd.read_csv(data_no_nan2_path)
+data_no_nan = pd.read_csv(data_no_nan_path)
 
 #%%%####################################################################################################
 # First visualizations to explore the data

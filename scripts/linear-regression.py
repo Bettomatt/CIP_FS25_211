@@ -104,8 +104,6 @@ Standard Error: 0.0214
 ########################################################
 #%%%% Relationship between train delay and temperature
 ########################################################
-
-
 temperature = alldata["temperature_2m"]
 
 # Perform regression
@@ -128,7 +126,14 @@ plt.title("Relationship between train delay and temperature")
 plt.legend()
 plt.show()
 
-
+"""
+temperature regression results:
+Regression Coefficient (Slope): 0.0103
+Intercept: 1.3729
+R² Score: 0.0002
+P-Value: 0.0000 (Significance)
+Standard Error: 0.0012
+"""
 ########################################################
 #%%%% Relationship between train delay and wind
 ########################################################
@@ -158,9 +163,9 @@ plt.show()
 
 """
 temperature regression results:
-Regression Coefficient (Slope): 0.0103
-Intercept: 1.3729
-R² Score: 0.0002
-P-Value: 0.0000 (Significance)
-Standard Error: 0.0012
+Regression Coefficient (Slope): 0.0013
+Intercept: 1.4335
+R² Score: 0.0000
+P-Value: 0.2293 (Significance)
+Standard Error: 0.0011
 """
