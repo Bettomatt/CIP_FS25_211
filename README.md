@@ -6,7 +6,7 @@ This project analyzes the impact of weather conditions on the efficiency of publ
 All team members contributed to all stages of the project (data collection, transformation and analysis).
 However, specific areas of focus were:
 
-**Tobias Schöpfer:** Focused on data cleansing, creating weather-related categories and performing exploratory data analysis using various visualizations (boxplots, heatmaps).
+**Tobias Schöpfer:** Focused on data cleansing, creating weather-related categories and analyzing weather impacts on delays using various visualizations (boxplots, heatmaps).
 
 **Mattia Bettoja:** Primarily responsible for data collection, including accessing APIs (SBB, Open-Meteo) and downloading historical datasets for trains and weather. Also contributed to structuring and preparing the data for merging and analysis.
 
