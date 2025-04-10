@@ -100,3 +100,30 @@ plt.show()
 # Boxplot of Delays under Extreme Weather Conditions:
 # Compares distributions of arrival delays for “extreme” versus “normal” weather days.
 
+
+#%%% as an export for the documentation
+
+plt.rcParams['figure.figsize'] = (15, 6) # Changes the figure size for all plots
+data_no_nan2.boxplot(
+    column='arrival_delay_min',
+    by='snowfall_category',
+    grid=False
+)
+plt.title("Arrival Delay by Snowfall Category")
+plt.suptitle("")  # Remove the default subtitle
+plt.xlabel("Snowfall Range")
+plt.ylabel("Arrival Delay (min)")
+plt.ylim(-3, 4)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+data_no_nan2.boxplot(column='arrival_delay_min', by='simp_weather_description', grid=False)
+plt.title("Arrival Delay by Weather Category")
+plt.suptitle("")  # Remove default subtitle
+plt.xlabel("Weather Category (simplified)")
+plt.ylabel("Arrival Delay (min)")
+plt.ylim(-3, 4)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
