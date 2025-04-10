@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 import scipy.linalg
@@ -11,6 +12,14 @@ X = alldata[["precipitation", "snowfall", "temperature_2m", "wind_speed_10m"]].c
 
 # Convert all columns in X to numeric (to avoid object types)
 X = X.apply(pd.to_numeric, errors='coerce')
+
+# Generate interaction terms
+X["precip_snow"] = X["precipitation"] * X["snowfall"]
+X["precip_temp"] = X["precipitation"] * X["temperature_2m"]
+X["precip_wind"] = X["precipitation"] * X["wind_speed_10m"]
+X["snow_temp"] = X["snowfall"] * X["temperature_2m"]
+X["snow_wind"] = X["snowfall"] * X["wind_speed_10m"]
+X["temp_wind"] = X["temperature_2m"] * X["wind_speed_10m"]
 
 # Print data types of the columns to verify they are numeric
 print(X.dtypes)
@@ -44,29 +53,61 @@ print(pd.DataFrame({"Feature": X.columns, "Coefficient": beta}))
 print(f"\nR² Score: {r2:.4f}")
 
 """
-precipitation     float64
-snowfall          float64
-temperature_2m    float64
-wind_speed_10m    float64
-dtype: object
+Effect of Weather on Train Delays:
+Weather variables (precipitation, snowfall, temperature, wind speed) were tested as predictors of train arrival delays.
+Most individual weather effects were small and had minimal impact on delays.
+
+Interaction Effects:
+Interactions between precipitation, snowfall, temperature, and wind speed were included to check for combined effects.
+Some interactions (e.g., snow × temp, snow × wind) showed small effects, but none were substantial.
+
+Model Fit (R² Score = 0.0004):
+The model explains only 0.04% of the variation in train delays.
+This means weather conditions alone do not significantly influence delays.
+
+Key Takeaways:
+The impact of weather on train delays is negligible.
+Other factors (e.g., operational issues, infrastructure, congestion) likely play a much larger role.
+"""
+
+
+
+"""
 Regression Coefficients:
-          Feature  Coefficient
-0       Intercept     1.367037
-1   precipitation     0.033858
-2        snowfall     0.058494
-3  temperature_2m     0.010327
-4  wind_speed_10m     0.000534
-R² Score: 0.0002
+           Feature  Coefficient
+0        Intercept     1.450841
+1    precipitation     0.160493
+2         snowfall    -0.071101
+3   temperature_2m    -0.002831
+4   wind_speed_10m    -0.015505
+5      precip_snow    -0.099169
+6      precip_temp    -0.013805
+7      precip_wind    -0.002369
+8        snow_temp     0.073333
+9        snow_wind     0.015182
+10       temp_wind     0.002343
+
 """
 
 """
-A multiple linear regression was performed in which weather conditions were used to predict train arrival delays. 
-A bias term (intercept, expected train arrival delay) was inserted, and precipitation, snowfall, temperature, and 
-wind speed were included as explanatory variables. It was found that an intercept of approximately 1.3670 was estimated, 
-with coefficients for precipitation, snowfall, temperature, and wind speed of about 0.0339, 0.0585, 0.0103, and 0.0005, 
-respectively. It was observed that increases in each weather variable were associated with only minimal increases in 
-the arrival delay. The overall model fit was determined to be extremely poor, as indicated by an R² score of 0.0002, 
-which suggests that only 0.02% of the variance in arrival delay was explained by the weather features. It was concluded 
-that the influence of the selected weather conditions on train delays is negligible, and it was suggested that other 
-factors might be required to better explain the variability in train delays.
+What has been done?
+Multiple Linear Regression with Interaction Terms:
+
+A regression model was built to analyze the effect of precipitation, snowfall, temperature, and wind speed on train arrival delays.
+Interaction terms (e.g., precipitation × wind speed, snowfall × temperature) were included to examine 
+whether weather factors together have a combined effect on delays.
+
+Regression Results:
+Individual weather variables had small coefficients, indicating a weak relationship with train delays.
+Interaction terms showed no substantial impact—some had small positive or negative coefficients, 
+but none were significant enough to explain delays.
+
+Model Performance (R² Score = 0.0004):
+The model explained only 0.04% of the variation in train delays, 
+meaning that weather and its interactions do not meaningfully predict delays.
+
+What does this outcome mean?
+No strong combined effect was found between weather variables on train delays.
+Train delays are likely influenced by other factors (e.g., operational disruptions, track conditions, 
+scheduling issues) rather than weather conditions alone.
 """
